@@ -1,0 +1,37 @@
+.CopyOverlay {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  opacity: 0;
+  transform: scale(.1);
+  transition: transform 1500ms ease-in-out;
+}
+
+.CopyOverlay.show {
+  z-index: 10;
+  opacity: 1;
+  transform: scale(20);
+}
+
+.CopyOverlay--message {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: scale(.1);
+  transition: transform 1500ms ease-in-out;
+}
+
+.CopyOverlay--message.show {
+  z-index: 11;
+  opacity: 1;
+  transform: scale(1)  
+}
