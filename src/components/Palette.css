@@ -4,27 +4,8 @@
 }
 
 .Palette--colors {
-  height: 80%;
+  height: 94vh;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 1fr)
-}
-
-.Palette div.rc-slider {
-  padding: 2rem 0;
-  width: 400px;
-}
-
-.Palette div.rc-slider-handle {
-  margin-top: -8px;
-  width: 24px;
-  height: 24px;
-  border: none;
-  background: url('../assets/images/color-wheel-solid.png');
-}
-
-.Palette div.rc-slider-handle:focus {
-  border: none;
-  outline: none;
-  box-shadow: none;
 }
