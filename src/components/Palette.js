@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ColorBox from './ColorBox';
 import Slider from 'rc-slider';
-import './Palette.css';
 import 'rc-slider/assets/index.css';
+import './Palette.css';
 
 class Palette extends Component {
   state = {
@@ -22,6 +22,8 @@ class Palette extends Component {
           min={100}
           max={900}
           step={100}
+          trackStyle={{background: 'transparent'}}
+          railStyle={{height: '8px'}}
           onAfterChange={this.changeLevel}
         />
         <div className="Palette--colors">
