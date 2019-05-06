@@ -1,14 +1,41 @@
-body {
+html {
+  height: 100%;
+  font-size: 62.5%;
+}
+
+/* :root {
+  --clr-primary: ;
+  --clr-primary-dark: ;
+  --clr-primary-light: ;
+  --animation-time: ;
+
+  --nav-height: ;
+} */
+
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+
+  background-color: aliceblue;
+
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1.6rem;
+  line-height: 1.4;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  monospace;
+}
+
+#root {
+  height: 100%;
 }
