@@ -6,7 +6,7 @@ import { generatePalette } from './colorHelpers';
 const App = () => {
   return (
     <div>
-      <Palette {...generatePalette(seedPalettes[4])}/>
+      <Palette {...generatePalette(seedPalettes[0])}/>
     </div>
   );
 }

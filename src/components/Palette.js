@@ -28,13 +28,18 @@ class Palette extends Component {
       <ColorBox
         background={clr[this.state.format]}
         name={clr.name}
-        key={clr.hex}
+        key={clr.id}
       />
     ));
 
     return (
       <div className="Palette">
-        <Navbar changeLevel={this.changeLevel} level={this.state.level} colors={this.props.colors[500]} selectChangedHandler={this.selectChangedHandler} />
+        <Navbar
+          changeLevel={this.changeLevel}
+          level={this.state.level}
+          colors={this.props.colors[500]}
+          selectChangedHandler={this.selectChangedHandler}
+        />
         <div className="Palette--colors">
           {colorBoxes}
         </div>
@@ -43,6 +48,7 @@ class Palette extends Component {
           format={this.state.format}
           close={this.snackbarClosedHandler}
         />
+        <footer className="Palette--footer">{this.props.paletteName} {this.props.emoji}</footer>
       </div>
     )
   }
