@@ -55,7 +55,7 @@ class Navbar extends Component {
             value={this.state.format}
             onChange={this.selectChangedHandler}
           >
-            <MenuItem value="hex">Hex - {this.getColor()}</MenuItem>
+            <MenuItem value="hex">HEX - {this.getColor()}</MenuItem>
             <MenuItem value="rgb">RGB - {this.getColor('rgb')}</MenuItem>
             <MenuItem value="rgba">RGBA - {this.getColor('rgba')}</MenuItem>
           </Select>

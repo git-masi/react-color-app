@@ -46,3 +46,8 @@
   outline: none;
   box-shadow: none;
 }
+
+.Select-container {
+  margin-left: auto;
+  margin-right: 1rem;
+}

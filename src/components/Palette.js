@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import ColorBox from './ColorBox';
-import './Palette.css';
 import Navbar from './Navbar';
+import FormatChangedSnackbar from './FormatChangedSnackbar';
+import './Palette.css';
 
 class Palette extends Component {
   state = {
     level: 500,
-    format: 'hex'
+    format: 'hex',
+    snackbarOpen: false
   }
 
-  changeLevel = (value) => {
+  changeLevel = value => {
     this.setState({level: value});
   }
 
   selectChangedHandler = colorFormat => {
-    this.setState({format: colorFormat});
+    this.setState({format: colorFormat, snackbarOpen: true});
+  }
+
+  snackbarClosedHandler = () => {
+    this.setState({snackbarOpen: false});
   }
   
   render() {
@@ -32,6 +38,11 @@ class Palette extends Component {
         <div className="Palette--colors">
           {colorBoxes}
         </div>
+        <FormatChangedSnackbar
+          snackbarOpen={this.state.snackbarOpen}
+          format={this.state.format}
+          close={this.snackbarClosedHandler}
+        />
       </div>
     )
   }
