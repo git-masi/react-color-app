@@ -1,13 +1,9 @@
 import React from 'react';
-import seedPalettes from './seedPalettes';
-import Palette from './components/Palette';
-import { generatePalette } from './colorHelpers';
+import Routes from './Routes';
 
 const App = () => {
   return (
-    <div>
-      <Palette {...generatePalette(seedPalettes[0])}/>
-    </div>
+    <Routes/>
   );
 }
 
