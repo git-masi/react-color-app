@@ -1,45 +1,68 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'rc-slider';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import 'rc-slider/assets/index.css';
 import './Navbar.css';
 
-const Navbar = props => {
-  const changeLevel = (value) => {
-    props.changeLevel(value);
+class Navbar extends Component {
+  state = {
+    format: "hex"
+  } 
+
+  changeLevel = (value) => {
+    this.props.changeLevel(value);
   }
 
-  const cycleColors = () => {
-    if (!props.colors) return;
+  cycleColors = () => {
+    if (!this.props.colors) return;
     setInterval(() => {
-      document.getElementById('cycle-colors').style.color = getColor();
+      document.getElementById('cycle-colors').style.color = this.getColor();
     }, 1600);
   }
 
-  const getColor = () => {
-    let arr = props.colors;
-    return arr[Math.floor(Math.random() * arr.length)].hex;
+  getColor = (format = 'hex') => {
+    let arr = this.props.colors;
+    return arr[Math.floor(Math.random() * arr.length)][format];
   }
-
-  cycleColors();
-
-  return (
-    <nav className="Navbar">
-      <Link to="/" className="logo">react<span id="cycle-colors">color</span>picker</Link>
-      <div className="slider-container">
-        <span>Level: {props.level}</span>
-        <Slider
-            defaultValue={props.level}
-            min={100}
-            max={900}
-            step={100}
-            trackStyle={{background: 'transparent'}}
-            railStyle={{height: '8px'}}
-            onAfterChange={changeLevel}
-          />
-      </div>
-    </nav>
-  )
+  
+  selectChangedHandler = (e) => {
+    this.setState({format: e.target.value}, 
+      () => this.props.selectChangedHandler(this.state.format)
+    );
+  }
+  
+  render() {
+    this.cycleColors();
+    return (
+      <nav className="Navbar">
+        <Link to="/" className="logo">react<span id="cycle-colors">color</span>picker</Link>
+        <div className="slider-container">
+          <span>Level: {this.props.level}</span>
+          <Slider
+              defaultValue={this.props.level}
+              min={100}
+              max={900}
+              step={100}
+              trackStyle={{background: 'transparent'}}
+              railStyle={{height: '8px'}}
+              onAfterChange={this.changeLevel}
+            />
+        </div>
+        <div className="Select-container">
+          <Select
+            value={this.state.format}
+            onChange={this.selectChangedHandler}
+          >
+            <MenuItem value="hex">Hex - {this.getColor()}</MenuItem>
+            <MenuItem value="rgb">RGB - {this.getColor('rgb')}</MenuItem>
+            <MenuItem value="rgba">RGBA - {this.getColor('rgba')}</MenuItem>
+          </Select>
+        </div>
+      </nav>
+    )
+  }
 }
 
 export default Navbar;
