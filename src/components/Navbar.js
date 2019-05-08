@@ -44,18 +44,21 @@ class Navbar extends Component {
     return (
       <nav className="Navbar">
         <Link to="/" className="logo">react<span id="cycle-colors">color</span>picker</Link>
-        <div className="slider-container">
-          <span>Level: {this.props.level}</span>
-          <Slider
-              defaultValue={this.props.level}
-              min={100}
-              max={900}
-              step={100}
-              trackStyle={{background: 'transparent'}}
-              railStyle={{height: '8px'}}
-              onAfterChange={this.changeLevel}
-            />
-        </div>
+        {this.props.singleColor ?
+          null :
+          <div className="slider-container">
+            <span>Level: {this.props.level}</span>
+            <Slider
+                defaultValue={this.props.level}
+                min={100}
+                max={900}
+                step={100}
+                trackStyle={{background: 'transparent'}}
+                railStyle={{height: '8px'}}
+                onAfterChange={this.changeLevel}
+              />
+          </div>
+        }
         <div className="Select-container">
           <Select
             value={this.state.format}
