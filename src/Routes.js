@@ -4,6 +4,7 @@ import seedPalettes from './seedPalettes';
 import Palette from './components/Palette';
 import { generatePalette } from './colorHelpers';
 import PaletteList from './components/PaletteList';
+import SingleColorPalette from './components/SingleColorPalette';
 
 const Routes = () => {
   const findPalette = (id) => {
@@ -16,7 +17,9 @@ const Routes = () => {
       <Route exact path="/palette/:id" render={routeProps => (
         <Palette {...generatePalette(findPalette(routeProps.match.params.id))}/>
       )} />
-      <Route exact path="/palette/:paletteID/:colorID" render={() => <h1>it works</h1>}/>
+      <Route exact path="/palette/:paletteName/:colorID" render={routeProps => (
+        <SingleColorPalette color={routeProps.match.params.colorID} {...generatePalette(findPalette(routeProps.match.params.paletteName.toLowerCase().replace(/\s/g, '-')))}/>
+      )}/>
     </Switch>
   )
 }

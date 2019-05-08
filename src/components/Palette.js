@@ -22,13 +22,15 @@ class Palette extends Component {
   snackbarClosedHandler = () => {
     this.setState({snackbarOpen: false});
   }
-  
+
   render() {
     const colorBoxes = this.props.colors[this.state.level].map(clr => (
       <ColorBox
         background={clr[this.state.format]}
         name={clr.name}
         key={clr.id}
+        id={clr.id}
+        paletteName={this.props.paletteName}
       />
     ));
 

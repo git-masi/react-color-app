@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ColorBox.css';
 import CopyOverlay from './CopyOverlay';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
   
 class ColorBox extends Component {
   state = {
@@ -13,12 +13,12 @@ class ColorBox extends Component {
     this.setState({copied: true}, () => setTimeout(() => this.setState({copied: false}), 1500));
   }
 
-  moreHandler = () => {
-    this.props.history.push('/');
-  }
+  // moreHandler = () => {
+  //   this.props.history.push('/');
+  // }
 
   render() {
-    const { name, background } = this.props;
+    const { name, paletteName, background, id } = this.props;
     return (
       <div className="ColorBox" style={{background: background}}>
         <div className='copy-container'>
@@ -28,7 +28,8 @@ class ColorBox extends Component {
           </div>
           <button className='copy-button' onClick={this.copyHandler}>Copy</button>
         </div>
-        <button className='see-more' onClick={this.moreHandler}>More</button>
+        {/* <button className='see-more' onClick={this.moreHandler}>More</button> */}
+        <Link className="see-more" to={`/palette/${paletteName}/${id}`}>More</Link>
       </div>
     )
   }
