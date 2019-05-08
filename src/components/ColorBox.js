@@ -12,11 +12,7 @@ class ColorBox extends Component {
     navigator.clipboard.writeText(this.props.background);
     this.setState({copied: true}, () => setTimeout(() => this.setState({copied: false}), 1500));
   }
-
-  // moreHandler = () => {
-  //   this.props.history.push('/');
-  // }
-
+  
   render() {
     const { name, paletteName, background, id } = this.props;
     return (
@@ -28,8 +24,7 @@ class ColorBox extends Component {
           </div>
           <button className='copy-button' onClick={this.copyHandler}>Copy</button>
         </div>
-        {/* <button className='see-more' onClick={this.moreHandler}>More</button> */}
-        <Link className="see-more" to={`/palette/${paletteName}/${id}`}>More</Link>
+        {this.props.singleColor ? null : <Link className="see-more" to={`/palette/${paletteName}/${id}`}>More</Link>}
       </div>
     )
   }
