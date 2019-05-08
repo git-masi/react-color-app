@@ -13,7 +13,7 @@ class ColorBox extends Component {
     this.setState({copied: true}, () => setTimeout(() => this.setState({copied: false}), 1500));
   }
 
-  moreClickedHandler = () => {
+  moreHandler = () => {
     this.props.history.push('/');
   }
 
@@ -28,7 +28,7 @@ class ColorBox extends Component {
           </div>
           <button className='copy-button' onClick={this.copyHandler}>Copy</button>
         </div>
-        <span className='see-more' onClick={this.moreClickedHandler}>More</span>
+        <button className='see-more' onClick={this.moreHandler}>More</button>
       </div>
     )
   }

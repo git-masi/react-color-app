@@ -16,6 +16,7 @@ const Routes = () => {
       <Route exact path="/palette/:id" render={routeProps => (
         <Palette {...generatePalette(findPalette(routeProps.match.params.id))}/>
       )} />
+      <Route exact path="/palette/:paletteID/:colorID" render={() => <h1>it works</h1>}/>
     </Switch>
   )
 }
