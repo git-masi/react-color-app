@@ -15,16 +15,23 @@ class Navbar extends Component {
     this.props.changeLevel(value);
   }
 
-  cycleColors = () => {
-    if (!this.props.colors) return;
-    setInterval(() => {
-      document.getElementById('cycle-colors').style.color = this.getColor();
-    }, 1600);
-  }
-
   getColor = (format = 'hex') => {
     let arr = this.props.colors;
     return arr[Math.floor(Math.random() * arr.length)][format];
+  }
+  
+  cycleColors = () => {
+    document.getElementById('cycle-colors').style.color = this.getColor();
+  }
+  
+  intervalID = null;
+  
+  componentDidMount() {
+    this.intervalID = setInterval(this.cycleColors, 1600);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
   }
   
   selectChangedHandler = (e) => {
@@ -34,7 +41,6 @@ class Navbar extends Component {
   }
   
   render() {
-    this.cycleColors();
     return (
       <nav className="Navbar">
         <Link to="/" className="logo">react<span id="cycle-colors">color</span>picker</Link>
