@@ -12,7 +12,7 @@ const Routes = () => {
 
   return (
     <Switch>
-      <Route exact path="/" render={() => <PaletteList palettes={seedPalettes}/>} />
+      <Route exact path="/" render={routeProps => <PaletteList palettes={seedPalettes} {...routeProps}/>} />
       <Route exact path="/palette/:id" render={routeProps => (
         <Palette {...generatePalette(findPalette(routeProps.match.params.id))}/>
       )} />

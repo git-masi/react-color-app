@@ -9,7 +9,8 @@ const styles = {
     alignItems: 'center',
     background: 'white',
     border: '.1rem solid rgba(0,0,0,0.3)',
-    borderRadius: '.5rem'
+    borderRadius: '.5rem',
+    cursor: 'pointer'
   },
   
   miniBoxes: {
@@ -47,10 +48,15 @@ const styles = {
 };
 
 const MiniPalette = props => {
-  const { classes, colors, emoji, paletteName } = props;
+  const { classes, colors, emoji, paletteName, id } = props;
+
+  const handleClick = () => {
+    props.handleClick(id)
+  }
+
   const colorBoxes = colors.map(c => <div style={{background: c.color}} key={c.color}></div>)
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onClick={handleClick}>
       <div className={classes.miniBoxes}>
         {colorBoxes}
       </div>

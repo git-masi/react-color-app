@@ -30,17 +30,18 @@ const styles = {
 }
 
 class PaletteList extends Component {
+  goToPalette = (id) => {
+    this.props.history.push(`/palette/${id}`);
+  }
+
   render() {
-    const { palettes, classes } = this.props; 
+    const { palettes, classes } = this.props;
+    const miniPalettes = palettes.map(p => <MiniPalette {...p} key={p.id} handleClick={this.goToPalette}/>)
     return (
       <div className={classes.root}>
         <h1>React Colors</h1>
         <div className={classes.miniPaletteContainer}>
-          {palettes.map(p => (
-              <MiniPalette {...p} key={p.id}/>
-              // <Link to={`/palette/${p.id}`} key={p.id}>{p.paletteName}</Link>
-            )
-          )}
+          {miniPalettes}
         </div>
       </div>
     )
