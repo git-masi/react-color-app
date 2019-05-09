@@ -75,6 +75,8 @@ const styles = theme => ({
 class NewPaletteForm extends Component {
   state = {
     open: false,
+    curColor: '#0abde3',
+    paletteColors: []
   };
 
   handleDrawerOpen = () => {
@@ -84,6 +86,14 @@ class NewPaletteForm extends Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
+
+  changeColorHandler = value => {
+    this.setState({curColor: value.hex});
+  }
+
+  addColorHandler = () => {
+    this.setState({paletteColors: [...this.state.paletteColors, this.state.curColor]}, () => console.log(this.state.paletteColors))
+  }
 
   render() {
     const { classes, theme } = this.props;
@@ -139,10 +149,15 @@ class NewPaletteForm extends Component {
             </Button>
           </div>
           <ChromePicker
-            color='pink'
-            onChangeComplete={newColor => console.log(newColor)}
+            color={this.state.curColor}
+            onChangeComplete={this.changeColorHandler}
           />
-          <Button variant="contained" color="primary" className={classes.button}>
+          <Button
+            variant="contained"
+            style={{background: this.state.curColor}}
+            className={classes.button}
+            onClick={this.addColorHandler}
+          >
             Add Color
           </Button>
         </Drawer>
