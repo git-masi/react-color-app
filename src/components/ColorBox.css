@@ -60,3 +60,11 @@
   text-transform: uppercase;
   cursor: pointer;
 }
+
+.dark-color {
+  color: white;
+}
+
+.light-color {
+  background: rgba(0, 0, 0, 0.7);
+}

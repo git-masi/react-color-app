@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './ColorBox.css';
 import CopyOverlay from './CopyOverlay';
 import { withRouter, Link } from 'react-router-dom';
+import chroma from 'chroma-js';
   
 class ColorBox extends Component {
   state = {
@@ -15,16 +16,19 @@ class ColorBox extends Component {
   
   render() {
     const { name, paletteName, background, id } = this.props;
+    const isDarkColor = chroma(background).luminance() <= 0.08;
+    const isLightColor = chroma(background).luminance() >= 0.55;
+
     return (
       <div className="ColorBox" style={{background: background}}>
         <div className='copy-container'>
-          <CopyOverlay color={background} show={this.state.copied}/>
+          <CopyOverlay color={background} show={this.state.copied} isdark={isDarkColor} islight={isLightColor}/>
           <div className='box-content'>
-            <span>{name}</span>
+            <span className={isDarkColor ? 'dark-color' : null}>{name}</span>
           </div>
-          <button className='copy-button' onClick={this.copyHandler}>Copy</button>
+          <button className={`copy-button ${isLightColor ? 'light-color' : null}`} onClick={this.copyHandler}>Copy</button>
         </div>
-        {this.props.singleColor ? null : <Link className="see-more" to={`/palette/${paletteName}/${id}`}>More</Link>}
+        {this.props.singleColor ? null : <Link className={`see-more ${isLightColor ? 'light-color' : null}`} to={`/palette/${paletteName}/${id}`}>More</Link>}
       </div>
     )
   }
