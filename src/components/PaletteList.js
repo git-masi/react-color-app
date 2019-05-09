@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import MiniPalette from './MiniPalette';
 import { withStyles } from '@material-ui/styles';
 import backgroundSVG from '../assets/images/rainbow-vortex-blue-purple.svg';
@@ -10,12 +11,22 @@ const styles = {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
     background: `url(${backgroundSVG})`,
     backgroundSize: 'cover',
+    
+    '& header': {
+      marginBottom: '1rem',
+      width: '60%',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'flex-end',  
 
-    '& h1': {
-      color: 'white'
+      '& h1, a': {
+        color: 'white',
+        lineHeight: '1'
+      },
     }
   },
   
@@ -38,7 +49,10 @@ class PaletteList extends Component {
     const miniPalettes = palettes.map(p => <MiniPalette {...p} key={p.id} handleClick={this.goToPalette}/>)
     return (
       <div className={classes.root}>
-        <h1>React Colors</h1>
+        <header>
+          <h1>React Colors</h1>
+          <Link to="/palette/new">Create Palette</Link>
+        </header>
         <div className={classes.miniPaletteContainer}>
           {miniPalettes}
         </div>
