@@ -3,6 +3,7 @@ import ColorBox from './ColorBox';
 import FormatChangedSnackbar from './FormatChangedSnackbar';
 import { withStyles } from '@material-ui/styles';
 import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
 
 const styles = {
   root: {
@@ -16,6 +17,30 @@ const styles = {
     display: 'grid',
     gridTemplateRows: 'repeat(2, 1fr)',
     gridTemplateColumns: 'repeat(5, 1fr)',
+  },
+
+  'back-box': {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    background: 'black',
+  },
+
+  backButton: {
+    width: '100px',
+    height: '30px',
+    display: 'inline-block',
+  
+    fontSize: '1rem',
+    lineHeight: '30px',
+    textAlign: 'center',
+    
+    outline: 'none',
+    background: 'rgba(255, 255, 255, 0.3)',
+    color: 'white',
+    border: 'none',
+
+    textTransform: 'uppercase'
   },
 
   PaletteFooter: {
@@ -71,6 +96,9 @@ class SingleColorPalette extends Component {
         />
         <div className={this.props.classes.boxContainer}>
           {colorBoxes}
+          <div className={this.props.classes['back-box']}>
+            <Link to={`/palette/${this.props.id}`} className={this.props.classes.backButton} role="button">Go Back</Link>
+          </div>
         </div>
         <FormatChangedSnackbar
           snackbarOpen={this.state.snackbarOpen}
