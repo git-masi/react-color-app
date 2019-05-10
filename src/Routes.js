@@ -23,7 +23,7 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/palette/new" render={routeProps => <NewPaletteForm savePalette={this.savePalette} {...routeProps}/>} />
+        <Route exact path="/palette/new" render={routeProps => <NewPaletteForm savePalette={this.savePalette} {...routeProps} existingPalettes={this.state.palettes}/>} />
         <Route exact path="/palette/:paletteName/:colorID" render={routeProps => (
           <SingleColorPalette color={routeProps.match.params.colorID} {...generatePalette(this.findPalette(routeProps.match.params.paletteName.toLowerCase().replace(/\s/g, '-')))}/>
           )}/>
