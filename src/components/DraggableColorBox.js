@@ -33,16 +33,22 @@ const styles = {
   }
 }
 
+
 const DraggableColorBox = props => {
-  const classes = props.classes
+  const { classes, color, name, id } = props
+
+  const deleteHandler = () => {
+    props.deleteBoxHandler(id);
+  }
+
   return (
     <div
       className={classes.root}
-      style={{background: props.color}}
+      style={{background: color}}
     >
       <div className={classes.boxContent}>
-        <span>{props.name}</span>
-        <DeleteIcon className={classes.deleteIcon} aria-label="Delete"/>
+        <span>{name}</span>
+        <DeleteIcon className={classes.deleteIcon} onClick={deleteHandler} aria-label="Delete"/>
       </div>
     </div>
   )

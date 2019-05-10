@@ -111,7 +111,7 @@ class NewPaletteForm extends Component {
   }
 
   formSubmitHandler = () => {
-    const newColor = {color: this.state.curColor, name: this.state.newColorName}
+    const newColor = {color: this.state.curColor, name: this.state.newColorName, id: this.state.newColorName}
     this.setState({paletteColors: [...this.state.paletteColors, newColor], newColorName: ''})
   }
 
@@ -128,6 +128,10 @@ class NewPaletteForm extends Component {
 
   goBackHandler = () => {
     this.props.history.push('/');
+  }
+
+  deleteBoxHandler = (id) => {
+    this.setState({paletteColors: this.state.paletteColors.filter(c => c.id !== id)})
   }
 
   componentDidMount() {
@@ -248,7 +252,7 @@ class NewPaletteForm extends Component {
         >
           <div className={classes.drawerHeader} />
           <div className={classes.boxContainer}>
-            {this.state.paletteColors.map(c => <DraggableColorBox color={c.color} name={c.name}/>)}
+            {this.state.paletteColors.map(c => <DraggableColorBox deleteBoxHandler={this.deleteBoxHandler} color={c.color} name={c.name} key={c.id} id={c.id}/>)}
           </div>
         </main>
       </div>
