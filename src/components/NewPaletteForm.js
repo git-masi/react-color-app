@@ -35,6 +35,9 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+  toolBar: {
+    justifyContent: 'space-between'
+  },
   menuButton: {
     marginLeft: 12,
     marginRight: 20,
@@ -111,6 +114,12 @@ class NewPaletteForm extends Component {
     this.setState({paletteColors: [...this.state.paletteColors, newColor], curColorName: ''})
   }
 
+  savePaletteHandler = () => {
+    const newPalette = {paletteName: 'Test Palette', colors: this.state.paletteColors};
+    this.props.savePalette(newPalette);
+    this.props.history.push('/');
+  }
+
   componentDidMount() {
     ValidatorForm.addValidationRule("isColorNameUnique", value => (
       this.state.paletteColors.every(
@@ -133,12 +142,13 @@ class NewPaletteForm extends Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
+          color="default"
           position="fixed"
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open,
           })}
         >
-          <Toolbar disableGutters={!open}>
+          <Toolbar className={classes.toolBar} disableGutters={!open}>
             <IconButton
               color="inherit"
               aria-label="Open drawer"
@@ -148,8 +158,12 @@ class NewPaletteForm extends Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
-              Persistent drawer
+              Create A Palette
             </Typography>
+            <div>
+              <Button variant="contained" color="secondary">Go Back</Button>
+              <Button variant="contained" color="primary" onClick={this.savePaletteHandler}>Save Palette</Button>
+            </div>
           </Toolbar>
         </AppBar>
         <Drawer

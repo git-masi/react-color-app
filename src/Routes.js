@@ -12,9 +12,13 @@ const Routes = () => {
     return seedPalettes.find(palette => palette.id === id);
   }
 
+  const savePalette = () => {
+
+  }
+
   return (
     <Switch>
-      <Route exact path="/palette/new" render={() => <NewPaletteForm/>} />
+      <Route exact path="/palette/new" render={routeProps => <NewPaletteForm savePalette={savePalette} {...routeProps}/>} />
       <Route exact path="/palette/:paletteName/:colorID" render={routeProps => (
         <SingleColorPalette color={routeProps.match.params.colorID} {...generatePalette(findPalette(routeProps.match.params.paletteName.toLowerCase().replace(/\s/g, '-')))}/>
         )}/>
