@@ -37,7 +37,6 @@ const styles = {
     width: '60%',
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
-    // gridTemplateRows: 'repeat(auto-fit, minmax(160px, 1fr))',
     gridGap: '.5rem .5rem',
   }
 }

@@ -21,22 +21,8 @@ const styles = {
     display: 'grid',
     gridTemplateRows: 'repeat(4, 1fr)',
     gridTemplateColumns: 'repeat(5, 1fr)',
-
-    '& :first-child': {
-      borderTopLeftRadius: '.5rem'
-    },
-
-    '& :last-child': {
-      borderBottomRightRadius: '.5rem'
-    },
-
-    '& :nth-of-type(5)': {
-      borderTopRightRadius: '.5rem'
-    },
-
-    '& :nth-last-of-type(5)': {
-      borderBottomLeftRadius: '.5rem'
-    }
+    borderRadius: '.5rem',
+    overflow: 'hidden',
   },
 
   paletteText: {
