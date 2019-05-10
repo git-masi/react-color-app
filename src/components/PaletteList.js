@@ -7,14 +7,17 @@ import backgroundSVG from '../assets/images/rainbow-vortex-blue-purple.svg';
 
 const styles = {
   root: {
+    padding: '2rem 0',
     width: '100%',
     height: '100%',
+    minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
     background: `url(${backgroundSVG})`,
     backgroundSize: 'cover',
+    backgroundAttachment: 'fixed',
     
     '& header': {
       marginBottom: '1rem',
@@ -32,10 +35,10 @@ const styles = {
   
   miniPaletteContainer: {
     width: '60%',
-    height: '80%',
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
-    gridGap: '1rem'
+    // gridTemplateRows: 'repeat(auto-fit, minmax(160px, 1fr))',
+    gridGap: '.5rem .5rem',
   }
 }
 

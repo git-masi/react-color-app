@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import seedPalettes from './seedPalettes';
 import Palette from './components/Palette';
@@ -7,27 +7,33 @@ import PaletteList from './components/PaletteList';
 import SingleColorPalette from './components/SingleColorPalette';
 import NewPaletteForm from './components/NewPaletteForm';
 
-const Routes = () => {
-  const findPalette = (id) => {
-    return seedPalettes.find(palette => palette.id === id);
+class Routes extends Component {
+  state = {
+    palettes: seedPalettes
   }
 
-  const savePalette = () => {
-
+  findPalette = (id) => {
+    return this.state.palettes.find(palette => palette.id === id);
   }
 
-  return (
-    <Switch>
-      <Route exact path="/palette/new" render={routeProps => <NewPaletteForm savePalette={savePalette} {...routeProps}/>} />
-      <Route exact path="/palette/:paletteName/:colorID" render={routeProps => (
-        <SingleColorPalette color={routeProps.match.params.colorID} {...generatePalette(findPalette(routeProps.match.params.paletteName.toLowerCase().replace(/\s/g, '-')))}/>
-        )}/>
-      <Route exact path="/palette/:id" render={routeProps => (
-        <Palette {...generatePalette(findPalette(routeProps.match.params.id))}/>
-        )} />
-      <Route exact path="/" render={routeProps => <PaletteList palettes={seedPalettes} {...routeProps}/>} />
-    </Switch>
-  )
+  savePalette = (newPalette) => {
+    this.setState({palettes: [...this.state.palettes, newPalette]});
+  }
+
+  render() {
+    return (
+      <Switch>
+        <Route exact path="/palette/new" render={routeProps => <NewPaletteForm savePalette={this.savePalette} {...routeProps}/>} />
+        <Route exact path="/palette/:paletteName/:colorID" render={routeProps => (
+          <SingleColorPalette color={routeProps.match.params.colorID} {...generatePalette(this.findPalette(routeProps.match.params.paletteName.toLowerCase().replace(/\s/g, '-')))}/>
+          )}/>
+        <Route exact path="/palette/:id" render={routeProps => (
+          <Palette {...generatePalette(this.findPalette(routeProps.match.params.id))}/>
+          )} />
+        <Route exact path="/" render={routeProps => <PaletteList palettes={this.state.palettes} {...routeProps}/>} />
+      </Switch>
+    )
+  }
 }
 
 export default Routes;

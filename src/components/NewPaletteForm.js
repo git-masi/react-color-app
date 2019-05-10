@@ -120,6 +120,10 @@ class NewPaletteForm extends Component {
     this.props.history.push('/');
   }
 
+  goBackHandler = () => {
+    this.props.history.push('/');
+  }
+
   componentDidMount() {
     ValidatorForm.addValidationRule("isColorNameUnique", value => (
       this.state.paletteColors.every(
@@ -161,7 +165,7 @@ class NewPaletteForm extends Component {
               Create A Palette
             </Typography>
             <div>
-              <Button variant="contained" color="secondary">Go Back</Button>
+              <Button variant="contained" color="secondary" onClick={this.goBackHandler}>Go Back</Button>
               <Button variant="contained" color="primary" onClick={this.savePaletteHandler}>Save Palette</Button>
             </div>
           </Toolbar>

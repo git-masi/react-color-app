@@ -3,6 +3,8 @@ import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {
+    height: '100%',
+    minHeight: '160px',
     padding: '1rem',
     display: 'flex',
     flexDirection: 'column',
