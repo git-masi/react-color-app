@@ -1,9 +1,51 @@
 import React from 'react';
+import { withStyles } from '@material-ui/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+const styles = {
+  root: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+  },
+
+  boxContent: {
+    padding: '.7rem',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    textTransform: 'uppercase',
+    color: '#555',
+    fontSize: '1.2rem',
+  },
+
+  deleteIcon: {
+    cursor: 'pointer',
+    transform: 'scale(.9)',
+    transition: 'all 200ms ease-in-out',
+
+    '&:hover': {
+      color: 'white',
+      transform: 'scale(1.4)',
+    },
+  }
+}
 
 const DraggableColorBox = props => {
+  const classes = props.classes
   return (
-    <div style={{background: props.color}}><p>{props.name}</p></div>
+    <div
+      className={classes.root}
+      style={{background: props.color}}
+    >
+      <div className={classes.boxContent}>
+        <span>{props.name}</span>
+        <DeleteIcon className={classes.deleteIcon} aria-label="Delete"/>
+      </div>
+    </div>
   )
 }
 
-export default DraggableColorBox;
+export default withStyles(styles)(DraggableColorBox);
