@@ -53,6 +53,10 @@ class ColorPickerForm extends Component {
 
     return (
       <Fragment>
+        <ChromePicker
+          color={this.state.curColor}
+          onChangeComplete={this.changeColorHandler}
+        />
         <Button
           variant="contained"
           color="primary"
@@ -61,10 +65,6 @@ class ColorPickerForm extends Component {
         >
           Random Color
         </Button>
-        <ChromePicker
-          color={this.state.curColor}
-          onChangeComplete={this.changeColorHandler}
-        />
         <ValidatorForm onSubmit={this.formSubmitHandler} ref='form'>
           <TextValidator
             name="newColorName"
