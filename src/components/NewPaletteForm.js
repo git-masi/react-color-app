@@ -14,7 +14,8 @@ import { ChromePicker } from 'react-color';
 import Button from '@material-ui/core/Button';
 import DraggableColorList from './DraggableColorList';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
-import { arrayMove } from 'react-sortable-hoc';
+
+const arrayMove = require('array-move');
 
 const drawerWidth = 400;
 
