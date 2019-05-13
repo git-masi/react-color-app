@@ -85,7 +85,7 @@ class NewPaletteForm extends Component {
     curColor: '#0abde3',
     newColorName: '',
     newPaletteName: '',
-    paletteColors: []
+    paletteColors: [...this.props.existingPalettes[0].colors]
   };
 
   handleDrawerOpen = () => {
@@ -128,6 +128,22 @@ class NewPaletteForm extends Component {
     this.setState({paletteColors: this.state.paletteColors.filter(c => c.id !== id)})
   }
 
+  clearColorsHandler = () => {
+    this.setState({paletteColors: []});
+  }
+
+  addRandomColorHandler = () => {
+    const palettes = this.props.existingPalettes;
+    const randPalette = palettes[this.getRandomNum(palettes.length)];
+    const colors = randPalette.colors;
+    const color = colors[this.getRandomNum(colors.length)].color;
+    this.setState({curColor: color});
+  }
+
+  getRandomNum = (maxNum) => {
+    return Math.floor(Math.random() * maxNum);
+  }
+
   onSortEnd = ({oldIndex, newIndex}) => {
     this.setState(({ paletteColors }) => ({
       paletteColors: arrayMove(paletteColors, oldIndex, newIndex),
@@ -156,7 +172,7 @@ class NewPaletteForm extends Component {
   }
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     const { open } = this.state;
 
     return (
@@ -216,10 +232,10 @@ class NewPaletteForm extends Component {
             Choose Your Colors
           </Typography>
           <div>
-            <Button variant="contained" color="primary" className={classes.button}>
+            <Button variant="contained" color="primary" className={classes.button} onClick={this.addRandomColorHandler}>
               Random Color
             </Button>
-            <Button variant="contained" color="secondary" className={classes.button}>
+            <Button variant="contained" color="secondary" className={classes.button} onClick={this.clearColorsHandler}>
               Clear Palette
             </Button>
           </div>
@@ -254,7 +270,7 @@ class NewPaletteForm extends Component {
             <DraggableColorList
               paletteColors={this.state.paletteColors}
               deleteBoxHandler={this.deleteBoxHandler}
-              axis="x,y"
+              axis="xy"
               onSortEnd={this.onSortEnd}
             />
         </main>

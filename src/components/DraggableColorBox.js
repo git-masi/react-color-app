@@ -10,6 +10,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-end',
+    cursor: 'grab',
   },
 
   boxContent: {

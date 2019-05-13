@@ -13,7 +13,6 @@ const styles = {
     minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
-    // justifyContent: 'center',
     alignItems: 'center',
     background: `url(${backgroundSVG})`,
     backgroundSize: 'cover',
