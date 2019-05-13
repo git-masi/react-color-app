@@ -11,39 +11,40 @@ import Button from '@material-ui/core/Button';
 import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
+import dWidth from '../drawerWidth';
 
 const arrayMove = require('array-move');
 
-const drawerWidth = 400;
+const drawerWidth = dWidth;
 
 const styles = theme => ({
   root: {
     display: 'flex',
   },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  toolBar: {
-    justifyContent: 'space-between'
-  },
+  // appBar: {
+  //   transition: theme.transitions.create(['margin', 'width'], {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.leavingScreen,
+  //   }),
+  // },
+  // appBarShift: {
+  //   width: `calc(100% - ${drawerWidth}px)`,
+  //   marginLeft: drawerWidth,
+  //   transition: theme.transitions.create(['margin', 'width'], {
+  //     easing: theme.transitions.easing.easeOut,
+  //     duration: theme.transitions.duration.enteringScreen,
+  //   }),
+  // },
+  // toolBar: {
+  //   justifyContent: 'space-between'
+  // },
   menuButton: {
     marginLeft: 12,
     marginRight: 20,
   },
-  hide: {
-    display: 'none',
-  },
+  // hide: {
+  //   display: 'none',
+  // },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -137,11 +138,12 @@ class NewPaletteForm extends Component {
         <CssBaseline />
         <PaletteFormNav
           open={this.state.open}
-          classes={ classes }
+          // classes={ classes }
           handleDrawerOpen={this.handleDrawerOpen}
           savePaletteHandler={this.savePaletteHandler}
           inputChangedHandler={this.inputChangedHandler}
           existingPalettes={existingPalettes}
+          drawerWidth={drawerWidth}
         />
         <Drawer
           className={classes.drawer}
@@ -181,12 +183,12 @@ class NewPaletteForm extends Component {
           })}
         >
           <div className={classes.drawerHeader} />
-            <DraggableColorList
-              paletteColors={this.state.paletteColors}
-              deleteBoxHandler={this.deleteBoxHandler}
-              axis="xy"
-              onSortEnd={this.onSortEnd}
-            />
+          <DraggableColorList
+            paletteColors={this.state.paletteColors}
+            deleteBoxHandler={this.deleteBoxHandler}
+            axis="xy"
+            onSortEnd={this.onSortEnd}
+          />
         </main>
       </div>
     );
