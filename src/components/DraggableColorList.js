@@ -16,16 +16,15 @@ const styles = {
 const DraggableColorList = ({ paletteColors, deleteBoxHandler, classes }) => {
   return (
     <div className={classes.boxContainer}>
-      {paletteColors.map((c, i) => (
+      {paletteColors.map((c, i) => { console.log(c); return(
         <DraggableColorBox
           index={i}
-          deleteBoxHandler={() => deleteBoxHandler(c.id)}
+          deleteBoxHandler={() => deleteBoxHandler(c.name)}
           color={c.color}
           name={c.name}
-          key={c.id}
-          id={c.id}
+          key={c.name}
         />
-        )
+        )}
       )}
     </div>
   )

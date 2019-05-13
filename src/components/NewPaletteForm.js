@@ -80,6 +80,10 @@ const styles = theme => ({
 });
   
 class NewPaletteForm extends Component {
+  static defaultProps = {
+    maxColors: 20
+  }
+
   state = {
     open: true,
     curColor: '#0abde3',
@@ -124,8 +128,8 @@ class NewPaletteForm extends Component {
     this.props.history.push('/');
   }
 
-  deleteBoxHandler = (id) => {
-    this.setState({paletteColors: this.state.paletteColors.filter(c => c.id !== id)})
+  deleteBoxHandler = (name) => {
+    this.setState({paletteColors: this.state.paletteColors.filter(c => c.name !== name)})
   }
 
   clearColorsHandler = () => {
@@ -256,6 +260,7 @@ class NewPaletteForm extends Component {
               variant="contained"
               style={{background: this.state.curColor}}
               className={classes.button}
+              disabled={this.state.paletteColors.length >= this.props.maxColors}
             >
               Add Color
             </Button>
