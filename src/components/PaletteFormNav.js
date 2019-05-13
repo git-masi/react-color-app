@@ -9,31 +9,19 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { withRouter } from 'react-router-dom';
+import PaletteMetaForm from './PaletteMetaForm';
 
 class PaletteFormNav extends Component {
-  state = {
-    newPaletteName: ''
-  }
+  // state = {
+  //   newPaletteName: ''
+  // }
 
-  savePaletteHandler = () => {
-    this.props.savePaletteHandler(this.state.newPaletteName);
-  }
-
-  inputChangedHandler = (e) => {
-    this.setState({[e.target.name]: e.target.value})
-  }
+  // savePaletteHandler = () => {
+  //   this.props.savePaletteHandler(this.state.newPaletteName);
+  // }
 
   goBackHandler = () => {
     this.props.history.push('/');
-  }
-
-  componentDidMount() {
-    ValidatorForm.addValidationRule("isPaletteNameUnique", () => {
-      const newPaletteName = this.state.newPaletteName.toLowerCase().replace(/\s/g, '')
-      return this.props.existingPalettes.every(
-        ({ paletteName }) => paletteName.toLowerCase().replace(/\s/g, '') !== newPaletteName
-      )
-    });
   }
 
   render() {
@@ -63,17 +51,10 @@ class PaletteFormNav extends Component {
             </Typography>
             <div>
               <Button variant="contained" color="secondary" onClick={this.goBackHandler}>Go Back</Button>
-              <ValidatorForm onSubmit={this.savePaletteHandler}>
-                <TextValidator
-                  label="Palette Name"
-                  name="newPaletteName"
-                  value={this.state.newPaletteName}
-                  onChange={this.inputChangedHandler}
-                  validators={["required", "isPaletteNameUnique"]}
-                  errorMessages={['Enter a palette name', 'Palette name taken']}
-                />
-                <Button type="submit" variant="contained" color="primary">Save Palette</Button>
-              </ValidatorForm>
+              <PaletteMetaForm
+                savePaletteHandler={this.props.savePaletteHandler}
+                existingPalettes={this.props.existingPalettes}
+              />
             </div>
           </Toolbar>
         </AppBar>
