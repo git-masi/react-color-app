@@ -21,30 +21,10 @@ const styles = theme => ({
   root: {
     display: 'flex',
   },
-  // appBar: {
-  //   transition: theme.transitions.create(['margin', 'width'], {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.leavingScreen,
-  //   }),
-  // },
-  // appBarShift: {
-  //   width: `calc(100% - ${drawerWidth}px)`,
-  //   marginLeft: drawerWidth,
-  //   transition: theme.transitions.create(['margin', 'width'], {
-  //     easing: theme.transitions.easing.easeOut,
-  //     duration: theme.transitions.duration.enteringScreen,
-  //   }),
-  // },
-  // toolBar: {
-  //   justifyContent: 'space-between'
-  // },
   menuButton: {
     marginLeft: 12,
     marginRight: 20,
   },
-  // hide: {
-  //   display: 'none',
-  // },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -58,6 +38,24 @@ const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
+  },
+  drawerContent: {
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    '& > *': {
+      marginBottom: '1rem',
+      width: '94% !important',
+      textAlign: 'center',
+    },
+
+    '& button': {
+      fontSize: '1.4rem !important',
+    },
   },
   content: {
     flexGrow: 1,
@@ -138,7 +136,6 @@ class NewPaletteForm extends Component {
         <CssBaseline />
         <PaletteFormNav
           open={this.state.open}
-          // classes={ classes }
           handleDrawerOpen={this.handleDrawerOpen}
           savePaletteHandler={this.savePaletteHandler}
           inputChangedHandler={this.inputChangedHandler}
@@ -160,15 +157,14 @@ class NewPaletteForm extends Component {
             </IconButton>
           </div>
           <Divider />
-          <Typography variant="h4">
-            Choose Your Colors
-          </Typography>
-          <div>
+          <div className={classes.drawerContent}>
+            <Typography variant="h4">
+              Choose Your Colors
+            </Typography>
             <Button variant="contained" color="secondary" className={classes.button} onClick={this.clearColorsHandler}>
               Clear Palette
             </Button>
             <ColorPickerForm
-              classes={classes}
               paletteFull={paletteFull}
               formSubmitHandler={this.formSubmitHandler}
               color={this.addRandomColorHandler}

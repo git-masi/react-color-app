@@ -2,6 +2,19 @@ import React, { Component, Fragment } from 'react';
 import { ChromePicker } from 'react-color';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import { withStyles, theme } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  colorNameInput: {
+    // padding: '1rem !important',
+    marginBottom: '1rem',
+  },
+  submitButton: {
+    padding: '1.8rem !important',
+    width: '100%',
+    fontSize: '2rem',
+  },
+})
   
 class ColorPickerForm extends Component {
   state = {
@@ -54,21 +67,25 @@ class ColorPickerForm extends Component {
     return (
       <Fragment>
         <ChromePicker
+          className={classes.chromePicker}
           color={this.state.curColor}
           onChangeComplete={this.changeColorHandler}
         />
         <Button
           variant="contained"
           color="primary"
-          className={classes.button}
+          className={classes.randColorButton}
           onClick={this.addRandomColorHandler}
         >
           Random Color
         </Button>
         <ValidatorForm onSubmit={this.formSubmitHandler} ref='form'>
           <TextValidator
-            variant="filled"
+            fullWidth
+            margin="dense"
             name="newColorName"
+            placeholder="Color Name"
+            className={classes.colorNameInput}
             value={this.state.newColorName}
             onChange={this.inputChangedHandler}
             validators={["required", "isColorUnique", "isColorNameUnique"]}
@@ -78,7 +95,7 @@ class ColorPickerForm extends Component {
             type="submit"
             variant="contained"
             style={{background: paletteFull ? 'gray' : this.state.curColor}}
-            className={classes.button}
+            className={classes.submitButton}
             disabled={paletteFull}
           >
             Add Color
@@ -89,4 +106,4 @@ class ColorPickerForm extends Component {
   }
 }
 
-export default ColorPickerForm;
+export default withStyles(styles)(ColorPickerForm);
