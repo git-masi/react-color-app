@@ -7,21 +7,24 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { withRouter } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
 
 class PaletteFormNav extends Component {
-  // state = {
-  //   newPaletteName: ''
-  // }
-
-  // savePaletteHandler = () => {
-  //   this.props.savePaletteHandler(this.state.newPaletteName);
-  // }
+  state = {
+    showMetaForm: false
+  }
 
   goBackHandler = () => {
     this.props.history.push('/');
+  }
+
+  showMetaFormHandler = () => {
+    this.setState({showMetaForm: true});
+  };
+
+  handleClose = () => {
+    this.setState({showMetaForm: false})
   }
 
   render() {
@@ -51,13 +54,19 @@ class PaletteFormNav extends Component {
             </Typography>
             <div>
               <Button variant="contained" color="secondary" onClick={this.goBackHandler}>Go Back</Button>
-              <PaletteMetaForm
-                savePaletteHandler={this.props.savePaletteHandler}
-                existingPalettes={this.props.existingPalettes}
-              />
+              <Button variant="contained" color="primary" onClick={this.showMetaFormHandler}>
+                Add Palette
+              </Button>
             </div>
           </Toolbar>
         </AppBar>
+        {this.state.showMetaForm && (<PaletteMetaForm
+          savePaletteHandler={this.props.savePaletteHandler}
+          existingPalettes={this.props.existingPalettes}
+          open={this.state.showMetaForm}
+          handleClose={this.handleClose}
+        />)
+        }
       </Fragment>
     )
   }
