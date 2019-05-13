@@ -178,6 +178,7 @@ class NewPaletteForm extends Component {
   render() {
     const { classes } = this.props;
     const { open } = this.state;
+    const paletteFull = this.state.paletteColors.length >= this.props.maxColors;
 
     return (
       <div className={classes.root}>
@@ -236,7 +237,12 @@ class NewPaletteForm extends Component {
             Choose Your Colors
           </Typography>
           <div>
-            <Button variant="contained" color="primary" className={classes.button} onClick={this.addRandomColorHandler}>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={this.addRandomColorHandler}
+            >
               Random Color
             </Button>
             <Button variant="contained" color="secondary" className={classes.button} onClick={this.clearColorsHandler}>
@@ -258,9 +264,9 @@ class NewPaletteForm extends Component {
             <Button
               type="submit"
               variant="contained"
-              style={{background: this.state.curColor}}
+              style={{background: paletteFull ? 'gray' : this.state.curColor}}
               className={classes.button}
-              disabled={this.state.paletteColors.length >= this.props.maxColors}
+              disabled={paletteFull}
             >
               Add Color
             </Button>
