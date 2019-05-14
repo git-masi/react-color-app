@@ -8,17 +8,26 @@ import SingleColorPalette from './components/SingleColorPalette';
 import NewPaletteForm from './components/NewPaletteForm';
 
 class Routes extends Component {
+  static defaultProps = {
+    initStorage: JSON.parse(localStorage.getItem('palettes'))
+  }
+
   state = {
-    palettes: seedPalettes
+    palettes: this.props.initStorage || seedPalettes
+  }
+  
+  savePalette = (newPalette) => {
+    const updatePalettes = [...this.state.palettes, newPalette];
+    this.setState({palettes: updatePalettes});
+    this.syncStorage(updatePalettes);
+  }
+
+  syncStorage = (p) => {
+    localStorage.setItem('palettes', JSON.stringify(p));
   }
 
   findPalette = (id) => {
     return this.state.palettes.find(palette => palette.id === id);
-  }
-
-  savePalette = (newPalette) => {
-    this.setState({palettes: [...this.state.palettes, newPalette]});
-    // localStorage.setItem('palettes', JSON.stringify(newPalette));
   }
 
   render() {
