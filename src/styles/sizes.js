@@ -7,6 +7,6 @@ export default {
       md: "991.98px",
       lg: "1199.98px"
     };
-    return `@media (max-width: ${sizes[size]})`;
+    return `@media screen and (max-width: ${sizes[size]})`;
   }
 };

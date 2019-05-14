@@ -21,13 +21,11 @@ class ColorBox extends Component {
 
     return (
       <div className="ColorBox" style={{background: background}}>
-        <div className='copy-container'>
-          <CopyOverlay color={background} show={this.state.copied} isdark={isDarkColor} islight={isLightColor}/>
-          <div className='box-content'>
-            <span className={isDarkColor ? 'dark-color' : null}>{name}</span>
-          </div>
-          <button className={`copy-button ${isLightColor ? 'light-color' : null}`} onClick={this.copyHandler}>Copy</button>
+        <CopyOverlay color={background} show={this.state.copied} isdark={isDarkColor} islight={isLightColor}/>
+        <div className='box-content'>
+          <span className={isDarkColor ? 'dark-color' : null}>{name}</span>
         </div>
+        <button className={`copy-button ${isLightColor ? 'light-color' : null}`} onClick={this.copyHandler}>Copy</button>
         {this.props.singleColor ? null : <Link className={`see-more ${isLightColor ? 'light-color' : null}`} to={`/palette/${paletteName}/${id}`}>More</Link>}
       </div>
     )

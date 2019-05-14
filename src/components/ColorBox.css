@@ -7,11 +7,11 @@
 
 .copy-button {
   width: 100px;
-  height: 30px;
+  height: 25px;
   display: inline-block;
 
   font-size: 1rem;
-  line-height: 30px;
+  line-height: 25px;
   text-align: center;
   
   outline: none;
@@ -33,7 +33,7 @@
   position: absolute;
   left: 0px;
   bottom: 0px;
-  padding: 10px;
+  padding: 3px 10px;
   color: black;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -48,9 +48,9 @@
   bottom: 0px;
   color: white;
   width: 60px;
-  height: 30px;
+  height: 25px;
   text-align: center;
-  line-height: 30px;
+  line-height: 25px;
   text-transform: uppercase;
   cursor: pointer;
 }
