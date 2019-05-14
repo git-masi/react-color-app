@@ -32,6 +32,7 @@ class ColorPickerForm extends Component {
 
   formSubmitHandler = () => {
     const newColor = {color: this.state.curColor, name: this.state.newColorName, id: this.state.newColorName};
+    this.setState({newColorName: ''});
     this.props.formSubmitHandler(newColor);
   }
 
