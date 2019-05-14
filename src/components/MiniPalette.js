@@ -46,7 +46,7 @@ const styles = {
     top: '.2rem',
     right: '.2rem',
     opacity: 0,
-
+    transition: 'all 180ms ease-in-out !important',
   },
 };
 
@@ -66,7 +66,7 @@ const MiniPalette = props => {
   return (
     <div className={classes.root} onClick={handleClick}>
       <Fab size="small" color="secondary" aria-label="Delete" className={classes.fab}>
-        <DeleteIcon onClick={deletePaletteHandler}/>
+        <DeleteIcon onClick={deletePaletteHandler} />
       </Fab>
       <div className={classes.miniBoxes}>
         {colorBoxes}
