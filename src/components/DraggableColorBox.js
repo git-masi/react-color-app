@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { SortableElement } from 'react-sortable-hoc';
+import chroma from 'chroma-js';
 
 const styles = {
   root: {
@@ -24,14 +25,22 @@ const styles = {
   },
 
   deleteIcon: {
+    padding: '.2rem',
+    background: 'rgba(255,255,255,0.3)',
+    borderRadius: '50%',
     cursor: 'pointer',
-    transform: 'scale(.9)',
+    transform: 'scale(1.1)',
     transition: 'all 200ms ease-in-out',
 
     '&:hover': {
       color: 'white',
-      transform: 'scale(1.4)',
+      background: 'rgba(255,255,255,0.0)',
+      transform: 'scale(1.5)',
     },
+  },
+
+  darkColor: {
+    color: 'white',
   }
 }
 
@@ -43,13 +52,15 @@ const DraggableColorBox = props => {
     props.deleteBoxHandler(id);
   }
 
+  const isDarkColor = chroma(color).luminance() <= 0.117;
+
   return (
     <div
       className={classes.root}
       style={{background: color}}
     >
       <div className={classes.boxContent}>
-        <span>{name}</span>
+        <span className={isDarkColor ? classes.darkColor : null}>{name}</span>
         <DeleteIcon className={classes.deleteIcon} onClick={deleteHandler} aria-label="Delete"/>
       </div>
     </div>
