@@ -15,7 +15,7 @@ class Routes extends Component {
   state = {
     palettes: this.props.initStorage || seedPalettes
   }
-  
+
   savePalette = (newPalette) => {
     const updatePalettes = [...this.state.palettes, newPalette];
     this.setState({palettes: updatePalettes});
@@ -28,6 +28,13 @@ class Routes extends Component {
 
   findPalette = (id) => {
     return this.state.palettes.find(palette => palette.id === id);
+  }
+
+  deletePaletteHandler = (id) => {
+    const p = this.findPalette(id);
+    const updatePalettes = this.state.palettes.filter(palette => palette.id !== p.id);
+    this.setState({palettes: updatePalettes});
+    this.syncStorage(updatePalettes);
   }
 
   render() {
@@ -46,7 +53,7 @@ class Routes extends Component {
         <Route exact path="/palette/:id" render={routeProps => (
           <Palette {...generatePalette(this.findPalette(routeProps.match.params.id))}/>
           )} />
-        <Route exact path="/" render={routeProps => <PaletteList palettes={this.state.palettes} {...routeProps}/>} />
+        <Route exact path="/" render={routeProps => <PaletteList palettes={this.state.palettes} {...routeProps} deletePaletteHandler={this.deletePaletteHandler}/>} />
       </Switch>
     )
   }

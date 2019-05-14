@@ -1,8 +1,11 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
+import Fab from '@material-ui/core/Fab';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = {
   root: {
+    position: 'relative',
     height: '100%',
     minHeight: '160px',
     padding: '1rem',
@@ -12,7 +15,11 @@ const styles = {
     background: 'white',
     border: '.1rem solid rgba(0,0,0,0.3)',
     borderRadius: '.5rem',
-    cursor: 'pointer'
+    cursor: 'pointer',
+
+    '&:hover > $fab': {
+      opacity: 1,
+    }
   },
   
   miniBoxes: {
@@ -32,19 +39,35 @@ const styles = {
     flexWrap: 'nowrap',
     justifyContent: 'space-between',
     alignItems: 'center'
-  }
+  },
+
+  fab: {
+    position: 'absolute !important',
+    top: '.2rem',
+    right: '.2rem',
+    opacity: 0,
+
+  },
 };
 
 const MiniPalette = props => {
   const { classes, colors, emoji, paletteName, id } = props;
 
   const handleClick = () => {
-    props.handleClick(id)
+    props.handleClick(id);
+  }
+
+  const deletePaletteHandler = (e) => {
+    e.stopPropagation();
+    props.deletePaletteHandler(id);
   }
 
   const colorBoxes = colors.map(c => <div style={{background: c.color}} key={c.color}></div>)
   return (
     <div className={classes.root} onClick={handleClick}>
+      <Fab size="small" color="secondary" aria-label="Delete" className={classes.fab}>
+        <DeleteIcon onClick={deletePaletteHandler}/>
+      </Fab>
       <div className={classes.miniBoxes}>
         {colorBoxes}
       </div>
