@@ -4,6 +4,7 @@ import FormatChangedSnackbar from './FormatChangedSnackbar';
 import { withStyles } from '@material-ui/styles';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
+import sizes from '../styles/sizes';
 
 const styles = {
   root: {
@@ -17,6 +18,16 @@ const styles = {
     display: 'grid',
     gridTemplateRows: 'repeat(2, 1fr)',
     gridTemplateColumns: 'repeat(5, 1fr)',
+
+    [sizes.down('md')]: {
+      gridTemplateColumns: '1fr 1fr',
+      gridTemplateRows: 'repeat(auto-fit, minmax(5%, 1fr))',
+    },
+
+    [sizes.down('xs')]: {
+      gridTemplateColumns: '1fr',
+      gridTemplateRows: 'repeat(auto-fit, minmax(5%, 1fr))',
+    },
   },
 
   'back-box': {
