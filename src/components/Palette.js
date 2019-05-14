@@ -2,7 +2,29 @@ import React, { Component } from 'react';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import FormatChangedSnackbar from './FormatChangedSnackbar';
-import './Palette.css';
+import { withStyles } from '@material-ui/styles';
+
+const styles = {
+  palette: {
+    height: '100vh',
+    overflow: 'hidden',
+  },
+  
+  paletteColors: {
+    height: '90vh',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(5, 1fr)',
+    gridTemplateRows: 'repeat(4, 1fr)',
+  },
+  
+  paletteFooter: {
+    paddingRight: '1rem',
+    height: '4vh',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+}
 
 class Palette extends Component {
   state = {
@@ -24,6 +46,8 @@ class Palette extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     const colorBoxes = this.props.colors[this.state.level].map(clr => (
       <ColorBox
         background={clr[this.state.format]}
@@ -35,14 +59,14 @@ class Palette extends Component {
     ));
 
     return (
-      <div className="Palette">
+      <div className={classes.palette}>
         <Navbar
           changeLevel={this.changeLevel}
           level={this.state.level}
           colors={this.props.colors[500]}
           selectChangedHandler={this.selectChangedHandler}
         />
-        <div className="Palette--colors">
+        <div className={classes.paletteColors}>
           {colorBoxes}
         </div>
         <FormatChangedSnackbar
@@ -50,10 +74,10 @@ class Palette extends Component {
           format={this.state.format}
           close={this.snackbarClosedHandler}
         />
-        <footer className="Palette--footer">{this.props.paletteName} {this.props.emoji}</footer>
+        <footer className={classes.paletteFooter}>{this.props.paletteName} {this.props.emoji}</footer>
       </div>
     )
   }
 }
 
-export default Palette;
+export default withStyles(styles)(Palette);
