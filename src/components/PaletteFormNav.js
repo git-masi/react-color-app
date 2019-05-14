@@ -117,7 +117,6 @@ class PaletteFormNav extends Component {
         {this.state.showMetaForm && (<PaletteMetaForm
           savePaletteHandler={this.props.savePaletteHandler}
           existingPalettes={this.props.existingPalettes}
-          open={this.state.showMetaForm}
           handleClose={this.handleClose}
         />)
         }
