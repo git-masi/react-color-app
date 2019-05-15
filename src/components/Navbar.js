@@ -4,7 +4,6 @@ import Slider from 'rc-slider';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import 'rc-slider/assets/index.css';
-// import './Navbar.css';
 import colorWheel from '../assets/images/color-wheel-solid.png';
 import { withStyles } from '@material-ui/styles';
 import sizes from '../styles/sizes';
