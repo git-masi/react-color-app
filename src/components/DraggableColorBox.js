@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { SortableElement } from 'react-sortable-hoc';
 import chroma from 'chroma-js';
+import sizes from '../styles/sizes';
 
 const styles = {
   root: {
@@ -22,6 +23,10 @@ const styles = {
     textTransform: 'uppercase',
     color: '#555',
     fontSize: '1.2rem',
+
+    [sizes.down('xs')]: {
+      padding: '.3rem',
+    },
   },
 
   deleteIcon: {
@@ -36,6 +41,10 @@ const styles = {
       color: 'white',
       background: 'rgba(255,255,255,0.0)',
       transform: 'scale(1.5)',
+    },
+
+    [sizes.down('xs')]: {
+      transform: 'scale(.9)',
     },
   },
 

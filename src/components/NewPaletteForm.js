@@ -12,6 +12,7 @@ import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import dWidth from '../drawerWidth';
+import sizes from '../styles/sizes';
 
 const arrayMove = require('array-move');
 
@@ -19,7 +20,9 @@ const drawerWidth = dWidth;
 
 const styles = theme => ({
   root: {
+    height: '100vh',
     display: 'flex',
+    overflow: 'hidden',
   },
   menuButton: {
     marginLeft: 12,
@@ -28,9 +31,17 @@ const styles = theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+
+    [sizes.down('xs')]: {
+      width: '100vw',
+    },
   },
   drawerPaper: {
     width: drawerWidth,
+
+    [sizes.down('xs')]: {
+      width: '100vw',
+    },
   },
   drawerHeader: {
     display: 'flex',
@@ -65,6 +76,10 @@ const styles = theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
+
+    [sizes.down('xs')]: {
+      marginLeft: '-100vw',
+    },
   },
   contentShift: {
     transition: theme.transitions.create('margin', {

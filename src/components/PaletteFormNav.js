@@ -9,8 +9,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
-import { withStyles, theme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import dWidth from '../drawerWidth';
+import sizes from '../styles/sizes';
 
 const drawerWidth = dWidth;
 
@@ -46,8 +47,22 @@ const styles = theme => ({
     },
   },
   toolBarRight: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+
     '& > :first-child': {
       marginRight: '1rem',
+
+      [sizes.down('xs')]: {
+        marginRight: '.2rem',
+      },
+    },
+
+    '& button': {
+      [sizes.down('xs')]: {
+        padding: '.6rem 1rem',
+      }
     }
   },
 })
