@@ -36,18 +36,20 @@ class DraggableColorList extends Component {
   // static defaultProps = {
   //   container: document.getElementById('boxContainer')
   // }
-  state = {
-    globalID: null
-  }
+  // state = {
+  //   globalID: null
+  // }
+
+  globalID = null;
 
   componentDidMount() {
     // this.state.globalID = window.requestAnimationFrame(this.changeGrid);
     window.requestAnimationFrame(this.changeGrid);
   }
 
-  // componentWillUnmount() {
-  //   cancelAnimationFrame(this.state.globalID)
-  // }
+  componentWillUnmount() {
+    cancelAnimationFrame(this.globalID)
+  }
 
   changeGrid = () => {
     const container = document.getElementById('boxContainer');
@@ -66,7 +68,7 @@ class DraggableColorList extends Component {
         container.style.gridTemplateColumns = 'repeat(5, 1fr)'
         break;
     }
-    window.requestAnimationFrame(this.changeGrid);
+    this.globalID = window.requestAnimationFrame(this.changeGrid);
   }
 
   
