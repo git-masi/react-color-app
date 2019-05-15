@@ -77,11 +77,12 @@ const styles = theme => ({
   
 class NewPaletteForm extends Component {
   static defaultProps = {
-    maxColors: 20
+    maxColors: 20,
+    smallScreen: document.documentElement.clientWidth < 767.98
   }
 
   state = {
-    open: true,
+    open: this.props.smallScreen ? false : true,
     paletteColors: [...this.props.existingPalettes[0].colors]
   };
 
