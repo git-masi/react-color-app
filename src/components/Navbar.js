@@ -7,6 +7,8 @@ import 'rc-slider/assets/index.css';
 // import './Navbar.css';
 import colorWheel from '../assets/images/color-wheel-solid.png';
 import { withStyles } from '@material-ui/styles';
+import sizes from '../styles/sizes';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 const styles = {
   root: {
@@ -25,6 +27,10 @@ const styles = {
     alignItems: 'center',
     fontSize: '2rem',
     background: 'lightgray',
+    
+    [sizes.down('sm')]: {
+      display: 'none',
+    },
   },
   
   cycleColors: {
@@ -38,24 +44,63 @@ const styles = {
     flexWrap: 'nowrap',
     alignItems: 'center',
 
-    '& rc-slider': {
-      padding: '2rem 1rem',
-      width: '400px',
-      display: 'inline-block',
+    [sizes.down('sm')]: {
+      padding: '0 .5rem',
     },
 
-    '& rc-slider-handle': {
-      marginTop: '-8px',
+    '& .rc-slider': {
+      padding: '0 1rem',
+      width: '400px',
+      display: 'inline-block',
+
+      [sizes.down('md')]: {
+        width: '320px',
+      },
+
+      [sizes.down('sm')]: {
+        padding: '0 .5rem',
+        width: '280px',
+      },
+
+      [sizes.down('xs')]: {
+        width: '200px',
+      },
+    },
+
+    '& .rc-slider-rail': {
+      marginTop: '4px',
+      background: '#b3d8fb',
+    },
+
+    '& .rc-slider-handle': {
+      marginTop: '-4px',
       width: '24px',
       height: '24px',
       border: 'none',
       background: `url(${colorWheel})`,
       
-      '& :focus': {
+      '&:focus': {
         border: 'none',
         outline: 'none',
         boxShadow: 'none',
       },
+    },
+  },
+
+  levelDisp: {
+    [sizes.down('sm')]: {
+      fontSize: '1.2rem',
+    },
+  },
+  
+  backButton: {
+    display: 'none',
+
+    [sizes.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   },
   
@@ -86,7 +131,7 @@ class Navbar extends Component {
   intervalID = null;
   
   componentDidMount() {
-    this.intervalID = setInterval(this.cycleColors, 1600);
+    if (document.documentElement.clientWidth > 575.98) this.intervalID = setInterval(this.cycleColors, 1600);
   }
 
   componentWillUnmount() {
@@ -104,11 +149,12 @@ class Navbar extends Component {
 
     return (
       <nav className={classes.root}>
-        <Link to="/" className={classes.logo}>react<span id="cycle-colors" className={classes.cycleColors}>colors</span></Link>
+        <Link to="/" className={classes.logo}>React<span id="cycle-colors" className={classes.cycleColors}> Colors</span></Link>
+        <Link to="/" className={classes.backButton}><ChevronLeftIcon size="small"/></Link>
         {this.props.singleColor ?
           null :
           <div className={classes.sliderContainer}>
-            <span>Level: {level}</span>
+            <span className={classes.levelDisp}>Level: {level}</span>
             <Slider
                 defaultValue={level}
                 min={100}
