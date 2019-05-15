@@ -5,8 +5,19 @@ import { withStyles } from '@material-ui/styles';
 import backgroundSVG from '../assets/images/rainbow-vortex-blue-purple.svg';
 // background by SVGBackgrounds.com
 import sizes from '../styles/sizes';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const styles = {
+  '@global': {
+    '.fade-exit': {
+      opacity: 1,
+    },
+    '.fade-exit-active': {
+      opacity: 0,
+      transition: 'opacity 300ms ease-in-out',
+    },
+  },
+
   root: {
     padding: '2rem 0',
     width: '100%',
@@ -72,16 +83,24 @@ class PaletteList extends Component {
 
   render() {
     const { palettes, classes } = this.props;
-    const miniPalettes = palettes.map(p => <MiniPalette {...p} key={p.id} handleClick={this.goToPalette} deletePaletteHandler={this.props.deletePaletteHandler}/>)
+    const miniPalettes = palettes.map(p => (
+      <CSSTransition key={p.id} classNames='fade' timeout={300}>
+        <MiniPalette
+          {...p}
+          key={p.id}
+          handleClick={this.goToPalette}
+          deletePaletteHandler={this.props.deletePaletteHandler}
+        />
+      </CSSTransition>))
     return (
       <div className={classes.root}>
         <header>
           <h1>React Colors</h1>
           <Link to="/palette/new">Create Palette</Link>
         </header>
-        <div className={classes.miniPaletteContainer}>
-          {miniPalettes}
-        </div>
+        <TransitionGroup className={classes.miniPaletteContainer}>
+            {miniPalettes}
+        </TransitionGroup>
       </div>
     )
   }
