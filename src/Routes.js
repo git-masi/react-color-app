@@ -81,6 +81,15 @@ class Routes extends Component {
                   />
                 </Page>
               )}/>
+              <Route render={routeProps => (
+                <Page {...routeProps}>
+                  <PaletteList
+                    palettes={this.state.palettes}
+                    {...routeProps}
+                    deletePaletteHandler={this.deletePaletteHandler}
+                  />
+                </Page>
+              )}/>
             </Switch>
           </CSSTransition>
         </TransitionGroup>
