@@ -6,6 +6,27 @@ import backgroundSVG from '../assets/images/rainbow-vortex-blue-purple.svg';
 // background by SVGBackgrounds.com
 import sizes from '../styles/sizes';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+// import Dialog from '@material-ui/core/Dialog';
+// import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+// import DialogContentText from '@material-ui/core/DialogContentText';
+// import DialogTitle from '@material-ui/core/DialogTitle';
+// import Button from '@material-ui/core/Button';
+// import CheckCircleIcon from '@material-ui/icons/CheckCircleOutline';
+// import IconButton from '@material-ui/core/IconButton';
+// import Typography from '@material-ui/core/Typography';
+
+import Dialog from "@material-ui/core/Dialog";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import ListItemText from "@material-ui/core/ListItemText";
+import CheckIcon from "@material-ui/icons/Check";
+import CloseIcon from "@material-ui/icons/Close";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import blue from "@material-ui/core/colors/blue";
+import red from "@material-ui/core/colors/red";
 
 const styles = {
   '@global': {
@@ -77,8 +98,26 @@ const styles = {
 }
 
 class PaletteList extends Component {
+  state = {
+    deleteDialogOpen: false,
+    deletePaletteID: null
+  }
+
   goToPalette = (id) => {
     this.props.history.push(`/palette/${id}`);
+  }
+
+  openDialogHandler = (id) => {
+    this.setState({deleteDialogOpen: true, deletePaletteID: id});
+  }
+
+  closeDialogHandler = () => {
+    this.setState({deleteDialogOpen: false, deletePaletteID: null});
+  }
+
+  confirmDeleteHandler = () => {
+    this.props.deletePaletteHandler(this.state.deletePaletteID);
+    this.setState({deleteDialogOpen: false});
   }
 
   render() {
@@ -89,9 +128,10 @@ class PaletteList extends Component {
           {...p}
           key={p.id}
           handleClick={this.goToPalette}
-          deletePaletteHandler={this.props.deletePaletteHandler}
+          deletePaletteHandler={this.openDialogHandler}
         />
       </CSSTransition>))
+
     return (
       <div className={classes.root}>
         <header>
@@ -101,6 +141,36 @@ class PaletteList extends Component {
         <TransitionGroup className={classes.miniPaletteContainer}>
             {miniPalettes}
         </TransitionGroup>
+
+        <Dialog
+          open={this.state.deleteDialogOpen}
+          aria-labelledby='delete-dialog-title'
+          onClose={this.closeDialogHandler}
+        >
+          <DialogTitle id='delete-dialog-title'>
+            Delete This Palette?
+          </DialogTitle>
+          <List>
+            <ListItem button onClick={this.confirmDeleteHandler}>
+              <ListItemAvatar>
+                <Avatar
+                  style={{ backgroundColor: blue[100], color: blue[600] }}
+                >
+                  <CheckIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary='Delete' />
+            </ListItem>
+            <ListItem button onClick={this.closeDialogHandler}>
+              <ListItemAvatar>
+                <Avatar style={{ backgroundColor: red[100], color: red[600] }}>
+                  <CloseIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary='Cancel' />
+            </ListItem>
+          </List>
+        </Dialog>
       </div>
     )
   }
