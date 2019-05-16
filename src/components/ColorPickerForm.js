@@ -3,6 +3,7 @@ import { ChromePicker } from 'react-color';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { withStyles, theme } from '@material-ui/core/styles';
+import seedPalettes from '../seedPalettes';
 
 const styles = theme => ({
   colorNameInput: {
@@ -37,7 +38,12 @@ class ColorPickerForm extends Component {
   }
 
   addRandomColorHandler = () => {
-    const palettes = this.props.existingPalettes;
+    let palettes;
+    if (this.props.existingPalettes.length === 0) {
+      palettes = seedPalettes;
+    } else {
+      palettes = this.props.existingPalettes;
+    }
     const randPalette = palettes[this.getRandomNum(palettes.length)];
     const colors = randPalette.colors;
     const color = colors[this.getRandomNum(colors.length)].color;
@@ -80,7 +86,7 @@ class ColorPickerForm extends Component {
         >
           Random Color
         </Button>
-        <ValidatorForm onSubmit={this.formSubmitHandler} ref='form'>
+        <ValidatorForm onSubmit={this.formSubmitHandler} ref='form' instantValidate={false}>
           <TextValidator
             fullWidth
             margin="dense"
