@@ -197,6 +197,7 @@ class NewPaletteForm extends Component {
           <DraggableColorList
             paletteColors={this.state.paletteColors}
             deleteBoxHandler={this.deleteBoxHandler}
+            distance={20}
             axis="xy"
             onSortEnd={this.onSortEnd}
           />
