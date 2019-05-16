@@ -13,6 +13,7 @@ import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import dWidth from '../drawerWidth';
 import sizes from '../styles/sizes';
+import seedPalettes from '../seedPalettes'
 
 const arrayMove = require('array-move');
 
@@ -98,7 +99,7 @@ class NewPaletteForm extends Component {
 
   state = {
     open: this.props.smallScreen ? false : true,
-    paletteColors: [...this.props.existingPalettes[0].colors]
+    paletteColors: seedPalettes[0].colors
   };
 
   handleDrawerOpen = () => {
