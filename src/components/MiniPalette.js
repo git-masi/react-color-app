@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { withStyles } from '@material-ui/styles';
 import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -63,6 +63,7 @@ const MiniPalette = props => {
   }
 
   const colorBoxes = colors.map(c => <div style={{background: c.color}} key={c.color}></div>)
+  
   return (
     <div className={classes.root} onClick={handleClick}>
       <Fab size="small" color="secondary" aria-label="Delete" className={classes.fab}>
@@ -79,4 +80,4 @@ const MiniPalette = props => {
   )
 }
 
-export default withStyles(styles)(MiniPalette);
+export default memo(withStyles(styles)(MiniPalette));
