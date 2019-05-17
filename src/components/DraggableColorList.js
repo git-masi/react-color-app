@@ -2,15 +2,7 @@ import React, { Component } from 'react';
 import { SortableContainer } from 'react-sortable-hoc';
 import DraggableColorBox from './DraggableColorBox';
 import { withStyles } from '@material-ui/styles';
-
-const styles = {
-  boxContainer: {
-    width: '100%',
-    height: '100%',
-    display: 'grid',
-    gridTemplateRows: 'repeat(auto-fit, minmax(5%, 1fr))',
-  }
-}
+import styles from '../styles/DraggableColorListStyles';
 
 class DraggableColorList extends Component {
   globalID = null;

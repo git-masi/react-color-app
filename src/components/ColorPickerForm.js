@@ -1,20 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { ChromePicker } from 'react-color';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
-import { withStyles } from '@material-ui/core/styles';
 import seedPalettes from '../seedPalettes';
-
-const styles = {
-  colorNameInput: {
-    marginBottom: '1rem',
-  },
-  submitButton: {
-    padding: '1.8rem !important',
-    width: '100%',
-    fontSize: '2rem',
-  },
-}
+import { withStyles } from '@material-ui/core/styles';
+import styles from '../styles/ColorPickerFormStyles';
   
 class ColorPickerForm extends Component {
   state = {

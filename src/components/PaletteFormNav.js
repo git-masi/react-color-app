@@ -1,71 +1,16 @@
 import React, { Component, Fragment } from 'react';
-import classNames from 'classnames';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { withRouter } from 'react-router-dom';
+import PaletteMetaForm from './PaletteMetaForm';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import { withRouter } from 'react-router-dom';
-import PaletteMetaForm from './PaletteMetaForm';
+import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import dWidth from '../drawerWidth';
-import sizes from '../styles/sizes';
-
-const drawerWidth = dWidth;
-
-const styles = theme => ({
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  toolBar: {
-    justifyContent: 'space-between'
-  },
-  hide: {
-    display: 'none',
-  },
-  toolBarLeft: {
-    display: 'flex',
-    flexWrap: 'nowrap',
-    alignItems: 'center',
-    
-    '& button': {
-      marginRight: '1rem',
-      marginLeft: '-16px',
-    },
-  },
-  toolBarRight: {
-    display: 'flex',
-    flexWrap: 'nowrap',
-    alignItems: 'center',
-
-    '& > :first-child': {
-      marginRight: '1rem',
-
-      [sizes.down('xs')]: {
-        marginRight: '.2rem',
-      },
-    },
-
-    '& button': {
-      [sizes.down('xs')]: {
-        padding: '.6rem 1rem',
-      }
-    }
-  },
-})
+import CssBaseline from '@material-ui/core/CssBaseline';
+import styles from '../styles/PaletteFormNavStyles';
 
 class PaletteFormNav extends Component {
   state = {
@@ -142,4 +87,4 @@ class PaletteFormNav extends Component {
   }
 }
 
-export default withRouter(withStyles(styles)(PaletteFormNav));
+export default withRouter(withStyles(styles, { withTheme: true })(PaletteFormNav));
