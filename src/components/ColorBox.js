@@ -13,11 +13,11 @@ class ColorBox extends Component {
 
   copyHandler = () => {
     navigator.clipboard.writeText(this.props.background);
-    this.setState({copied: true}, () => setTimeout(() => this.setState({copied: false}), 1500));
+    this.setState({copied: true}, () => setTimeout(() => this.setState({copied: false}), 1800));
   }
   
   render() {
-    const { name, paletteName, background, id, classes } = this.props;
+    const { name, paletteName, background, id, classes, singleColor } = this.props;
     const isDarkColor = chroma(background).luminance() <= 0.08;
     const isLightColor = chroma(background).luminance() >= 0.55;
 
@@ -46,7 +46,7 @@ class ColorBox extends Component {
         >
           Copy
         </button>
-        {this.props.singleColor ?
+        {singleColor ?
           null :
           <Link
             className={classNames(classes.seeMore, {

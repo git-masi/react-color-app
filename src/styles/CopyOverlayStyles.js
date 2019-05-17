@@ -4,10 +4,9 @@ export default {
     top: 0,
     height: '100%',
     width: '100%',
+    display: 'none',
     zIndex: '0',
     opacity: '0',
-    transform: 'scale(.1)',
-    transition: 'transform 800ms ease-in-out',
   },
 
   message: {
@@ -16,15 +15,14 @@ export default {
     right: 0,
     bottom: 0,
     left: 0,
-    display: 'flex',
+    display: 'none',
+    zIndex: '0',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   
     color: 'white',
     opacity: 0,
-    transform: 'scale(.1)',
-    transition: 'all 400ms ease-in-out 400ms',
 
     '& h2': {
       margin: 0,
@@ -46,15 +44,20 @@ export default {
   },
 
   copyOverlayShow: {
+    display: 'block',
     zIndex: 10,
-    opacity: 1,
-    transform: 'scale(50)',
+    animationName: '$zoomInOverlay',
+    animationDuration: '1800ms',
+    animationTimingFunction: 'ease-in-out',
   },
-
+  
   messageShow: {
+    display: 'flex',
     zIndex: 11,
-    opacity: 1,
-    transform: 'scale(1)',  
+    animationName: '$zoomInMessage',
+    animationDuration: '1400ms',
+    animationDelay: '400ms',
+    animationTimingFunction: 'ease-in-out',
   },
   
   'h2light-color': {
@@ -63,5 +66,43 @@ export default {
   
   'plight-color': {
     color: 'black'
-  }
+  },
+
+  '@keyframes zoomInOverlay': {
+    '0%': {
+      transform: 'scale(.1)',
+      opacity: 0
+    },
+    '25%': {
+      transform: 'scale(50)',
+      opacity: 1
+    },
+    '75%': {
+      transform: 'scale(50)',
+      opacity: 1
+    },
+    '100%': {
+      transform: 'scale(.1)',
+      opacity: 0
+    }
+  },
+
+  '@keyframes zoomInMessage': {
+    '0%': {
+      transform: 'scale(.1)',
+      opacity: 0
+    },
+    '15%': {
+      transform: 'scale(1)',
+      opacity: 1
+    },
+    '60%': {
+      transform: 'scale(1)',
+      opacity: 1
+    },
+    '100%': {
+      transform: 'scale(.1)',
+      opacity: 0
+    }
+  },
 }
