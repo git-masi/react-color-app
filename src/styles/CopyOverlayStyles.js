@@ -24,7 +24,7 @@ export default {
     color: 'white',
     opacity: 0,
     transform: 'scale(.1)',
-    transition: 'transform 400ms ease-in-out 400ms',
+    transition: 'all 400ms ease-in-out 400ms',
 
     '& h2': {
       margin: 0,
