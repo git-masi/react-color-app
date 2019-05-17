@@ -57,15 +57,15 @@ class Palette extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, paletteName, colors, emoji } = this.props;
 
-    const colorBoxes = this.props.colors[this.state.level].map(clr => (
+    const colorBoxes = colors[this.state.level].map(clr => (
       <ColorBox
         background={clr[this.state.format]}
         name={clr.name}
         key={clr.id}
         id={clr.id}
-        paletteName={this.props.paletteName}
+        paletteName={paletteName}
       />
     ));
 
@@ -74,7 +74,7 @@ class Palette extends Component {
         <Navbar
           changeLevel={this.changeLevel}
           level={this.state.level}
-          colors={this.props.colors[500]}
+          colors={colors[500]}
           selectChangedHandler={this.selectChangedHandler}
         />
         <div className={classes.paletteColors}>
@@ -85,7 +85,7 @@ class Palette extends Component {
           format={this.state.format}
           close={this.snackbarClosedHandler}
         />
-        <footer className={classes.paletteFooter}>{this.props.paletteName} {this.props.emoji}</footer>
+        <footer className={classes.paletteFooter}>{paletteName} {emoji}</footer>
       </div>
     )
   }

@@ -85,7 +85,7 @@ class PaletteFormNav extends Component {
   }
 
   render() {
-    const { classes, open } = this.props;
+    const { classes, open, handleDrawerOpen, savePaletteHandler, existingPalettes } = this.props;
 
     return (
       <Fragment>
@@ -102,7 +102,7 @@ class PaletteFormNav extends Component {
               <IconButton
                 color="inherit"
                 aria-label="Open drawer"
-                onClick={this.props.handleDrawerOpen}
+                onClick={handleDrawerOpen}
                 className={classNames(classes.menuButton, {
                   [classes.hide]: open,
                 })}
@@ -132,8 +132,8 @@ class PaletteFormNav extends Component {
           </Toolbar>
         </AppBar>
         {this.state.showMetaForm && (<PaletteMetaForm
-          savePaletteHandler={this.props.savePaletteHandler}
-          existingPalettes={this.props.existingPalettes}
+          savePaletteHandler={savePaletteHandler}
+          existingPalettes={existingPalettes}
           handleClose={this.handleClose}
         />)
         }

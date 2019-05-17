@@ -54,11 +54,10 @@ const styles = {
 }
 
 
-const DraggableColorBox = props => {
-  const { classes, color, name, id } = props
+const DraggableColorBox = ({ classes, color, name, id, deleteBoxHandler }) => {
 
   const deleteHandler = () => {
-    props.deleteBoxHandler(id);
+    deleteBoxHandler(id);
   }
 
   const isDarkColor = chroma(color).luminance() <= 0.117;

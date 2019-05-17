@@ -25,10 +25,12 @@ const styles = theme => ({
     display: 'flex',
     overflow: 'hidden',
   },
+
   menuButton: {
     marginLeft: 12,
     marginRight: 20,
   },
+
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -37,6 +39,7 @@ const styles = theme => ({
       width: '100vw',
     },
   },
+
   drawerPaper: {
     width: drawerWidth,
 
@@ -44,6 +47,7 @@ const styles = theme => ({
       width: '100vw',
     },
   },
+
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
@@ -51,6 +55,7 @@ const styles = theme => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
+
   drawerContent: {
     height: '100%',
     width: '100%',
@@ -69,6 +74,7 @@ const styles = theme => ({
       fontSize: '1.4rem !important',
     },
   },
+
   content: {
     flexGrow: 1,
     height: 'calc(100vh - 64px)',
@@ -82,6 +88,7 @@ const styles = theme => ({
       marginLeft: '-100vw',
     },
   },
+  
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
@@ -143,9 +150,9 @@ class NewPaletteForm extends Component {
   };
 
   render() {
-    const { classes, existingPalettes } = this.props;
+    const { classes, existingPalettes, maxColors } = this.props;
     const { open } = this.state;
-    const paletteFull = this.state.paletteColors.length >= this.props.maxColors;
+    const paletteFull = this.state.paletteColors.length >= maxColors;
 
     return (
       <div className={classes.root}>
@@ -185,7 +192,7 @@ class NewPaletteForm extends Component {
               formSubmitHandler={this.formSubmitHandler}
               color={this.addRandomColorHandler}
               paletteColors={this.state.paletteColors}
-              existingPalettes={this.props.existingPalettes}
+              existingPalettes={existingPalettes}
             />
           </div>
         </Drawer>

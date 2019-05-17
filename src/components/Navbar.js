@@ -15,7 +15,6 @@ const styles = {
     display: 'flex',
     flexWrap: 'nowrap',
     alignItems: 'center',
-
   },
 
   logo: {
@@ -144,13 +143,13 @@ class Navbar extends Component {
   }
   
   render() {
-    const { classes, level } = this.props
+    const { classes, level, singleColor } = this.props
 
     return (
       <nav className={classes.root}>
         <Link to="/" className={classes.logo}>React<span id="cycle-colors" className={classes.cycleColors}> Colors</span></Link>
         <Link to="/" className={classes.backButton}><ChevronLeftIcon size="small"/></Link>
-        {this.props.singleColor ?
+        {singleColor ?
           null :
           <div className={classes.sliderContainer}>
             <span className={classes.levelDisp}>Level: {level}</span>

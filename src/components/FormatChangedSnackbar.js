@@ -3,7 +3,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const FormatChangedSnackbar = props => {
+const FormatChangedSnackbar = ({ snackbarOpen, format, close}) => {
   return (
     <Fragment>
       <Snackbar
@@ -11,19 +11,19 @@ const FormatChangedSnackbar = props => {
           vertical: 'bottom',
           horizontal: 'left',
         }}
-        open={props.snackbarOpen}
+        open={snackbarOpen}
         autoHideDuration={3000}
-        message={<span id="message-id" style={{fontSize: "1.6rem"}}>Format changed to {props.format}</span>}
+        message={<span id="message-id" style={{fontSize: "1.6rem"}}>Format changed to {format}</span>}
         ContentProps={{
           'aria-describedby': 'message-id',
         }}
-        onClose={props.close}
+        onClose={close}
         action={[
           <IconButton
             key="close"
             aria-label="Close"
             color="inherit"
-            onClick={props.close}
+            onClick={close}
           >
             <CloseIcon />
           </IconButton>

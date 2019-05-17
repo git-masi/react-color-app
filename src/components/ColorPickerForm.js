@@ -2,12 +2,11 @@ import React, { Component, Fragment } from 'react';
 import { ChromePicker } from 'react-color';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
-import { withStyles, theme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import seedPalettes from '../seedPalettes';
 
-const styles = theme => ({
+const styles = {
   colorNameInput: {
-    // padding: '1rem !important',
     marginBottom: '1rem',
   },
   submitButton: {
@@ -15,7 +14,7 @@ const styles = theme => ({
     width: '100%',
     fontSize: '2rem',
   },
-})
+}
   
 class ColorPickerForm extends Component {
   state = {

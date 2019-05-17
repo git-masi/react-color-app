@@ -22,6 +22,7 @@ const styles = {
     width: '100px',
     height: '25px',
     display: 'inline-block',
+    zIndex: 9,
   
     fontSize: '1rem',
     lineHeight: '25px',
@@ -89,7 +90,12 @@ class ColorBox extends Component {
 
     return (
       <div className={classes.colorBox} style={{background: background}}>
-        <CopyOverlay color={background} show={this.state.copied} isdark={isDarkColor} islight={isLightColor}/>
+        <CopyOverlay
+          color={background}
+          show={this.state.copied}
+          isdark={isDarkColor}
+          islight={isLightColor}
+        />
         <div className={classes.boxContent}>
           <span
             className={classNames({

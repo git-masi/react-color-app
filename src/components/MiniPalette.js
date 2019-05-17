@@ -50,24 +50,22 @@ const styles = {
   },
 };
 
-const MiniPalette = props => {
-  const { classes, colors, emoji, paletteName, id } = props;
-
-  const handleClick = () => {
-    props.handleClick(id);
+const MiniPalette = ({ classes, colors, emoji, paletteName, id, handleClick, deletePaletteHandler }) => {
+  const clickHandler = () => {
+    handleClick(id);
   }
 
-  const deletePaletteHandler = (e) => {
+  const deleteHandler = (e) => {
     e.stopPropagation();
-    props.deletePaletteHandler(id);
+    deletePaletteHandler(id);
   }
 
   const colorBoxes = colors.map(c => <div style={{background: c.color}} key={c.color}></div>)
   
   return (
-    <div className={classes.root} onClick={handleClick}>
+    <div className={classes.root} onClick={clickHandler}>
       <Fab size="small" color="secondary" aria-label="Delete" className={classes.fab}>
-        <DeleteIcon onClick={deletePaletteHandler} />
+        <DeleteIcon onClick={deleteHandler} />
       </Fab>
       <div className={classes.miniBoxes}>
         {colorBoxes}

@@ -87,7 +87,8 @@ class SingleColorPalette extends Component {
   }
   
   render() {
-    const SingleColorArr = this.getSingleColorArr(this.props.color);
+    const { color, classes, id, emoji } = this.props;
+    const SingleColorArr = this.getSingleColorArr(color);
     const colorBoxes = SingleColorArr.map(clr => (
       <ColorBox
         background={clr[this.state.format]}
@@ -99,16 +100,16 @@ class SingleColorPalette extends Component {
     ));
 
     return (
-      <div className={this.props.classes.root}>
+      <div className={classes.root}>
         <Navbar
           singleColor={true}
           colors={SingleColorArr}
           selectChangedHandler={this.selectChangedHandler}
         />
-        <div className={this.props.classes.boxContainer}>
+        <div className={classes.boxContainer}>
           {colorBoxes}
-          <div className={this.props.classes['back-box']}>
-            <Link to={`/palette/${this.props.id}`} className={this.props.classes.backButton} role="button">Go Back</Link>
+          <div className={classes['back-box']}>
+            <Link to={`/palette/${id}`} className={classes.backButton} role="button">Go Back</Link>
           </div>
         </div>
         <FormatChangedSnackbar
@@ -116,7 +117,7 @@ class SingleColorPalette extends Component {
           format={this.state.format}
           close={this.snackbarClosedHandler}
         />
-        <footer className={this.props.classes.PaletteFooter}>{this.props.color} {this.props.emoji}</footer>
+        <footer className={classes.PaletteFooter}>{color} {emoji}</footer>
       </div>
     )
   }

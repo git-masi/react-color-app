@@ -51,7 +51,7 @@ class Routes extends Component {
           >
             <Switch location={location}>
               <Route exact path="/palette/new" render={routeProps => (
-                <Page {...routeProps}>
+                <Page>
                   <NewPaletteForm
                     savePalette={this.savePalette}
                     {...routeProps}
@@ -60,7 +60,7 @@ class Routes extends Component {
                 </Page>
               )}/>
               <Route exact path="/palette/:paletteName/:colorID" render={routeProps => (
-                <Page {...routeProps}>
+                <Page>
                   <SingleColorPalette
                     color={routeProps.match.params.colorID}
                     {...generatePalette(this.findPalette(routeProps.match.params.paletteName.toLowerCase().replace(/\s/g, '-')))}
@@ -68,12 +68,12 @@ class Routes extends Component {
                 </Page>
               )}/>
               <Route exact path="/palette/:id" render={routeProps => (
-                <Page {...routeProps}>
+                <Page>
                   <Palette {...generatePalette(this.findPalette(routeProps.match.params.id))}/>
                 </Page>
               )}/>
               <Route exact path="/" render={routeProps => (
-                <Page {...routeProps}>
+                <Page>
                   <PaletteList
                     palettes={this.state.palettes}
                     {...routeProps}
@@ -82,7 +82,7 @@ class Routes extends Component {
                 </Page>
               )}/>
               <Route render={routeProps => (
-                <Page {...routeProps}>
+                <Page>
                   <PaletteList
                     palettes={this.state.palettes}
                     {...routeProps}

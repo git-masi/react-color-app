@@ -2,48 +2,20 @@ import React, { Component } from 'react';
 import { SortableContainer } from 'react-sortable-hoc';
 import DraggableColorBox from './DraggableColorBox';
 import { withStyles } from '@material-ui/styles';
-import sizes from '../styles/sizes';
-// import lifecycle from 'react-pure-lifecycle';
 
 const styles = {
   boxContainer: {
     width: '100%',
     height: '100%',
     display: 'grid',
-    // gridTemplateColumns: 'repeat(5, 1fr)',
-    // gridTemplateRows: 'repeat(4, 1fr)',
     gridTemplateRows: 'repeat(auto-fit, minmax(5%, 1fr))',
-
-    // [sizes.down('md')]: {
-    //   gridTemplateColumns: 'repeat(4, 1fr)',
-    // },
-
-    // [sizes.down('sm')]: {
-    //   gridTemplateColumns: 'repeat(2, 1fr)',
-    //   gridTemplateRows: 'repeat(auto-fit, minmax(5%, 1fr))',
-    // },
-
-    // [sizes.down('xs')]: {
-    //   gridTemplateColumns: '1fr',
-    //   gridTemplateRows: 'repeat(auto-fit, minmax(5%, 1fr))',
-    // },
-
-    
   }
 }
 
 class DraggableColorList extends Component {
-  // static defaultProps = {
-  //   container: document.getElementById('boxContainer')
-  // }
-  // state = {
-  //   globalID: null
-  // }
-
   globalID = null;
 
   componentDidMount() {
-    // this.state.globalID = window.requestAnimationFrame(this.changeGrid);
     window.requestAnimationFrame(this.changeGrid);
   }
 
@@ -73,9 +45,6 @@ class DraggableColorList extends Component {
 
   
   render() {
-    // const container = document.getElementById('boxContainer');
-    // const globalID = window.requestAnimationFrame(this.changeGrid)
-
     const { classes, deleteBoxHandler, paletteColors } = this.props
     return (
       <div className={classes.boxContainer} id="boxContainer">
